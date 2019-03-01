@@ -1,8 +1,10 @@
 <?php
-  //ini_set('display_errors', 1);
+  if (php_sapi_name() !== "cli")
+    exit('Command line-only PHP file.');
+
   error_reporting(0);
   set_time_limit(0);
-  ini_set('memory_limit','1.5G');
+  ini_set('memory_limit', '1.5G');
   require('php/options.php');
   ignore_user_abort(true);
   
@@ -130,21 +132,21 @@
     chdir('../');
     file_put_contents('php/options.php', <<<EOT
 <?php
-  $phpsb_option = (object) [];
+  \$phpsb_option = (object) [];
   
   // Please do not touch this option.
-  $phpsb_option->config_version = 1;
+  \$phpsb_option->config_version = 1;
 
   // MySQL database login information.
-  $phpsb_option->db = (object) [];
-  \$option->db->host = '{$option->db->host}';
-  \$option->db->name = '{$option->db->name}';
-  \$option->db->user = '{$option->db->user}';
-  \$option->db->passwd = '{$option->db->passwd}';
+  \$phpsb_option->db = (object) [];
+  \$phpsb_option->db->host = '{$option->db->host}';
+  \$phpsb_option->db->name = '{$option->db->name}';
+  \$phpsb_option->db->user = '{$option->db->user}';
+  \$phpsb_option->db->passwd = '{$option->db->passwd}';
   
   // Functions.
-  $phpsb_option->function_whitelist = false;
-  $phpsb_option->function_list = [
+  \$phpsb_option->function_whitelist = false;
+  \$phpsb_option->function_list = [
     'passthru',
     'shell_exec',
     'system',
@@ -212,20 +214,20 @@
   ];
   
   // Variables.
-  $phpsb_option->variable_whitelist = false;
-  $phpsb_option->variable_list = [
+  \$phpsb_option->variable_whitelist = false;
+  \$phpsb_option->variable_list = [
     'option'
   ];
   
   // Globals.
-  $phpsb_option->global_whitelist = false;
-  $phpsb_option->global_list = [
+  \$phpsb_option->global_whitelist = false;
+  \$phpsb_option->global_list = [
     
   ];
   
   // Superglobals.
-  $phpsb_option->superglobal_whitelist = true;
-  $phpsb_option->superglobal_list = [
+  \$phpsb_option->superglobal_whitelist = true;
+  \$phpsb_option->superglobal_list = [
     'GET',
     'POST',
     'COOKIE',
@@ -233,75 +235,75 @@
   ];
   
   // Constants.
-  $phpsb_option->constants_whitelist = false;
-  $phpsb_option->constants_list = [
+  \$phpsb_option->constants_whitelist = false;
+  \$phpsb_option->constants_list = [
     
   ];
   
   // Magic constants.
-  $phpsb_option->magic_constants_whitelist = false;
-  $phpsb_option->magic_constants_list = [
+  \$phpsb_option->magic_constants_whitelist = false;
+  \$phpsb_option->magic_constants_list = [
     
   ];
   
   // Namespaces.
-  $phpsb_option->namespace_whitelist = false;
-  $phpsb_option->namespace_list = [
+  \$phpsb_option->namespace_whitelist = false;
+  \$phpsb_option->namespace_list = [
     
   ];
   
   // Aliases.
-  $phpsb_option->alias_whitelist = false;
-  $phpsb_option->alias_list = [
+  \$phpsb_option->alias_whitelist = false;
+  \$phpsb_option->alias_list = [
     
   ];
   
   // Uses.
-  $phpsb_option->use_whitelist = false;
-  $phpsb_option->use_list = [
+  \$phpsb_option->use_whitelist = false;
+  \$phpsb_option->use_list = [
     
   ];
   
   // Classes.
-  $phpsb_option->class_whitelist = false;
-  $phpsb_option->class_list = [
+  \$phpsb_option->class_whitelist = false;
+  \$phpsb_option->class_list = [
     
   ];
   
   // Interfaces.
-  $phpsb_option->interface_whitelist = false;
-  $phpsb_option->interface_list = [
+  \$phpsb_option->interface_whitelist = false;
+  \$phpsb_option->interface_list = [
     
   ];
   
   // Traits.
-  $phpsb_option->trait_whitelist = false;
-  $phpsb_option->trait_list = [
+  \$phpsb_option->trait_whitelist = false;
+  \$phpsb_option->trait_list = [
     
   ];
   
   // Keywords.
-  $phpsb_option->keyword_whitelist = false;
-  $phpsb_option->keyword_list = [
+  \$phpsb_option->keyword_whitelist = false;
+  \$phpsb_option->keyword_list = [
     'eval',
     '__halt_compiler'
   ];
   
   // Operators.
-  $phpsb_option->operator_whitelist = false;
-  $phpsb_option->operator_list = [
+  \$phpsb_option->operator_whitelist = false;
+  \$phpsb_option->operator_list = [
     
   ];
   
   // Primitives.
-  $phpsb_option->primitive_whitelist = false;
-  $phpsb_option->primitive_list = [
+  \$phpsb_option->primitive_whitelist = false;
+  \$phpsb_option->primitive_list = [
     
   ];
   
   // Types.
-  $phpsb_option->type_whitelist = false;
-  $phpsb_option->type_list = [
+  \$phpsb_option->type_whitelist = false;
+  \$phpsb_option->type_list = [
     'mysqli',
     'reflectionextension'
   ];
@@ -317,6 +319,7 @@ Please disable the following extensions:
  - posix
  - sockets
  - wddx
+
 EOT;
 
     return $response;
