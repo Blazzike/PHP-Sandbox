@@ -195,15 +195,9 @@ tags
 [._]*.un~
 
 ### WebStorm ###
-.idea/
-
-# *.iml
-# modules.xml
-# .idea/misc.xml
-# *.ipr
-
-# Sonarlint plugin
-.idea/sonarlint
+/interface/.idea/*
+!/interface/.idea/PHP Sandbox.iml
+!/interface/.idea/.name
 
 ### Windows ###
 # Windows thumbnail cache files

@@ -8,7 +8,7 @@ module.exports = merge(production, {
   plugins: [
     new BrowserSyncPlugin({
       server: {
-        baseDir: ["dist"],
+        baseDir: ["../"],
         middleware: proxy('/php', {
           target: "https://php-sandbox.ml/",
           changeOrigin: true
