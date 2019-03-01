@@ -1,0 +1,9 @@
+// Colors
+$theme-color: color("shades", "white") !default;
+$theme-color-lighter: lighten($theme-color, 5%) !default;
+$theme-color-darker: darken($theme-color, 5%) !default;
+
+$theme-text-color: color("shades", "black") !default;
+
+// Buttons
+$button-raised-background-hover: darken($theme-color, 5%);

@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+// Materialize
+@import "materialize";
+
+body {
+  background-color: $theme-color;
+  color: $theme-text-color;
+}
+
+#file-tree {
+  .collapsible-body {
+    padding-left: 31px;
+  }
+
+  .collapsible-body li a {
+    padding: 0 16px;
+  }
+
+  li.active {
+    background-color: transparent;
+  }
+
+  li {
+    white-space: nowrap;
+  }
+
+  @media #{$large-and-up} {
+    z-index: 10;
+    margin-top: 64px;
+    height: calc(100vh - 64px);
+  }
+}
+
+#editor {
+  overflow: hidden;
+
+  &>div {
+    height: calc(100vh - 64px);
+  }
+}
+
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media #{$medium-and-down} {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+* {
+  user-select: none;
+}
+
+@media #{$medium-and-up} {
+  nav .brand-logo {
+    margin-left: 10px;
+  }
+}
+
+#loadingContainer {
+  height: 100vh;
+  width: 100vw;
+  z-index: 1500;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+
+  .valign-wrapper {
+    height: inherit;
+  }
+}
+
+.btn-fill {
+  display: block;
+  width: 100%;
+}
+
+#execution-modal-wrapper .modal {
+  background-color: white;
+  color: black;
+}
+
+.context-menu {
+  display: none;
+}
+
+@-webkit-keyframes autofill {
+  to {
+    color: $theme-text-color;
+    background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
+.selectable {
+  user-select: text;
+}
+
+.brand-logo {
+  white-space: nowrap;
+}

@@ -1,0 +1,5 @@
+{
+    "require": {
+        "corveda/php-sandbox": "2.*"
+    }
+}

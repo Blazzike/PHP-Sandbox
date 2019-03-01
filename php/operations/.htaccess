@@ -1,0 +1,4 @@
+php_flag allow_url_fopen Off
+php_flag allow_url_include Off
+
+php_flag engine on

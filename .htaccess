@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^php/operations/run/(.*) php/operations/run.php?path=$1 [L,QSA]
