@@ -8,7 +8,6 @@ import {arrayToTreeEntry, net} from "../Util";
 import AccessModal from "./modals/AccessModal";
 import * as ReactDOM from "react-dom";
 import ExecutionModal from "./modals/ExecutionModal";
-import Tooltip from "./Tooltip";
 import {app} from "../site";
 import FAB from "./FAB";
 
@@ -136,7 +135,7 @@ class App extends Component {
         ReactDOM.unmountComponentAtNode(document.getElementById("execution-modal-wrapper"));
 
         this.editorFocus();
-      }} />, document.getElementById("execution-modal-wrapper"));
+      }}/>, document.getElementById("execution-modal-wrapper"));
     });
   }
 
@@ -161,23 +160,23 @@ class App extends Component {
       return;
     }
 
-     FileUtil.writeFile(this.state.openFile, this.state.value, (s) => {
-       if (!(s.success && s.json)) {
-         if (callback)
-           callback(false);
+    FileUtil.writeFile(this.state.openFile, this.state.value, (s) => {
+      if (!(s.success && s.json)) {
+        if (callback)
+          callback(false);
 
-         return;
-       }
+        return;
+      }
 
-       this.setState({
-         saved: true
-       });
+      this.setState({
+        saved: true
+      });
 
-       alert("File saved.");
+      alert("File saved.");
 
-       if (callback)
+      if (callback)
         callback(true);
-     });
+    });
   }
 
   reloadTree(callback) {
@@ -215,7 +214,7 @@ class App extends Component {
       <div>
         {s.theme === "light" ? (
           <div>
-            <link rel="stylesheet" href="css/bundle-light.css?v6" />
+            <link rel="stylesheet" href="css/bundle-light.css?v6"/>
           </div>
         ) : ""}
 
@@ -239,9 +238,9 @@ class App extends Component {
               </div>
             </div>
           </div>
-        ):""}
+        ) : ""}
 
-        <Nav saved={s.saved} />
+        <Nav saved={s.saved}/>
         <FileTree tree={s.tree} name={s.name} onFileOpen={file => {
           this.save(success => {
             if (!success)
@@ -294,9 +293,9 @@ class App extends Component {
           this.accessModal.current.close();
         }}/>
 
-        {s.openFile ? (<FAB />) : ""}
+        {s.openFile ? (<FAB/>) : ""}
 
-        <div id="prompt-container" />
+        <div id="prompt-container"/>
       </div>
     );
   }

@@ -17,7 +17,8 @@ export const net = {
           json = JSON.parse(xhr.responseText);
           if (json.error)
             error = json.error.msg;
-        } catch (x) {}
+        } catch (x) {
+        }
 
         callback(xhr, {
           success: this.status === 200 && error === null,

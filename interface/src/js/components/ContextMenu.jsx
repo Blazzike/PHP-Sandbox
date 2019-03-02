@@ -22,7 +22,7 @@ class ContextMenu extends Component {
   }
 
   componentWillUnmount() {
-    this.el.current.parentElement.removeEventListener( "contextmenu", this.contextMenuHandler);
+    this.el.current.parentElement.removeEventListener("contextmenu", this.contextMenuHandler);
   }
 
   componentDidMount() {

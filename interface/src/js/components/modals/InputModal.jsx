@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Modal from "../Modal";
-import {TreeEntry} from "../FileTree";
 import * as M from "materialize-css";
 
 class InputModal extends Modal {
@@ -35,7 +34,7 @@ class InputModal extends Modal {
             <p>{this.props.msg}</p>
             <div className="row">
               <div className="input-field col s12">
-                <input tabIndex="1" ref={this.input} name="input" id="_InputModal_input" type="text" className="validate" required defaultValue={this.props.defaultValue} />
+                <input tabIndex="1" ref={this.input} name="input" id="_InputModal_input" type="text" className="validate" required defaultValue={this.props.defaultValue}/>
                 <label htmlFor="_InputModal_input">{this.props.input || "Input"}</label>
               </div>
             </div>

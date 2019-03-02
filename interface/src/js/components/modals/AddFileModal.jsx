@@ -37,7 +37,7 @@ class AddFileModal extends Modal {
             <h4>New</h4>
             <div className="row">
               <div className="input-field col s12">
-                <input tabIndex="1" ref={this.input} name="name" id="_addFileModal_name" type="text" className="validate" required />
+                <input tabIndex="1" ref={this.input} name="name" id="_addFileModal_name" type="text" className="validate" required/>
                 <label htmlFor="_addFileModal_name">File Name</label>
               </div>
               <div className="input-field col s12">

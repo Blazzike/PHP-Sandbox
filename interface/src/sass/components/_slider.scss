@@ -46,14 +46,16 @@
       }
 
       .caption {
-        color: #fff;
+        color: #FFFFFF;
         position: absolute;
         top: 15%;
         left: 15%;
         width: 70%;
         opacity: 0;
 
-        p { color: $slider-bg-color-light; }
+        p {
+          color: $slider-bg-color-light;
+        }
       }
 
       &.active {

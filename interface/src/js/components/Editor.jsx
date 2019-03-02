@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import * as monaco from "monaco-editor";
 
-import {app} from "../site";
-
 class Editor extends Component {
   constructor(props) {
     super(props);

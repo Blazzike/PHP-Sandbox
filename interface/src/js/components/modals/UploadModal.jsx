@@ -1,8 +1,6 @@
 import React from 'react';
 
 import Modal from "../Modal";
-import {TreeEntry} from "../FileTree";
-import * as M from "materialize-css";
 import {arrayToTreeEntry, net} from "../../Util";
 import {app} from "../../site";
 
@@ -25,7 +23,8 @@ class UploadModal extends Modal {
           e.preventDefault();
 
           app.setLoading();
-          net.post("php/operations/upload.php?path=" + [this.props.destination, this.fileInput.current.files[0].name].join("/"), new FormData(e.target), (xhr, s) => {
+          net.post("php/operations/upload.php?path=" + [this.props.destination,
+            this.fileInput.current.files[0].name].join("/"), new FormData(e.target), (xhr, s) => {
             app.setLoading(false);
 
             if (!(s.success && s.json))

@@ -5,16 +5,16 @@
     .tab a,
     .tab.disabled a,
     .tab.disabled a:hover {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
     }
 
     .tab a:hover,
     .tab a.active {
-      color: #fff;
+      color: #FFFFFF;
     }
 
     .indicator {
-      background-color: #fff;
+      background-color: #FFFFFF;
     }
   }
 
@@ -74,6 +74,7 @@
       cursor: default;
     }
   }
+
   .indicator {
     position: absolute;
     bottom: 0;

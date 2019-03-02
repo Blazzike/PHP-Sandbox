@@ -25,12 +25,14 @@ class FAB extends Component {
           </Tooltip>
           <ul>
             <Tooltip text="Execute in New Window (Ctrl + Shift + R)" position="left">
-              <li><a className="btn-floating blue darken-2" onClick={() => app.exec(true)}><i className="material-icons">add</i></a></li>
+              <li>
+                <a className="btn-floating blue darken-2" onClick={() => app.exec(true)}><i className="material-icons">add</i></a>
+              </li>
             </Tooltip>
           </ul>
         </div>
 
-        <div id="execution-modal-wrapper" />
+        <div id="execution-modal-wrapper"/>
       </div>
     );
   }

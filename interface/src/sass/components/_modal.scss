@@ -20,20 +20,21 @@
   will-change: top, opacity;
 
   @media #{$medium-and-down} {
-   width: 50%;
+    width: 50%;
   }
 
   @media #{$small-and-down} {
     width: 80%;
   }
 
-  h1,h2,h3,h4 {
+  h1, h2, h3, h4 {
     margin-top: 0;
   }
 
   .modal-content {
     padding: 24px;
   }
+
   .modal-close {
     cursor: pointer;
   }
@@ -51,6 +52,7 @@
     }
   }
 }
+
 .modal-overlay {
   position: fixed;
   z-index: 999;
@@ -60,7 +62,7 @@
   right: 0;
   height: 125%;
   width: 100%;
-  background: #000;
+  background: #000000;
   display: none;
 
   will-change: opacity;
@@ -80,7 +82,7 @@
   }
 
   .modal-footer {
-    border-top: 1px solid rgba(0,0,0,.1);
+    border-top: 1px solid rgba(0, 0, 0, .1);
     position: absolute;
     bottom: 0;
   }

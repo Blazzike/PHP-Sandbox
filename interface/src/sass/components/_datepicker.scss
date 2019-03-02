@@ -26,6 +26,7 @@
       &:focus {
         border-bottom: none;
       }
+
       border-bottom: none;
       text-align: center;
       margin: 0;
@@ -57,7 +58,7 @@
 .datepicker-date-display {
   flex: 1 auto;
   background-color: $secondary-color;
-  color: #fff;
+  color: #FFFFFF;
   padding: 20px 22px;
   font-weight: 500;
 
@@ -112,7 +113,7 @@
 
     &.is-selected {
       background-color: $secondary-color;
-      color: #fff;
+      color: #FFFFFF;
     }
 
     &.is-outside-current-month,

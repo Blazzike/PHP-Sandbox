@@ -60,7 +60,7 @@ class ExecutionModal extends Modal {
                     path: this.props.path.join("/")
                   });
                 }}>Execute as Text</a>
-            )}
+              )}
             </div>
             <div id="_ExecutionModal_html" className="col s12">
               <iframe onLoad={e => app.reloadTree()} src={`php/operations/run/${encodeURIComponent(this.props.path.join("\\"))}`} frameBorder="no" width="100%" height="130px"/>
@@ -68,7 +68,8 @@ class ExecutionModal extends Modal {
           </div>
         </div>
         <div className="modal-footer">
-          <button type="button" className="modal-close waves-effect btn-flat black-text"><Tooltip text="Esc" position="top">Close</Tooltip></button>
+          <button type="button" className="modal-close waves-effect btn-flat black-text">
+            <Tooltip text="Esc" position="top">Close</Tooltip></button>
         </div>
       </div>
     );

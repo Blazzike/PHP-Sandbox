@@ -163,7 +163,7 @@ export function uniqueName(path, id = 1) {
 
 export function basename(str) {
   let base = String(str).substring(str.lastIndexOf('/') + 1);
-  if(base.lastIndexOf(".") !== -1)
+  if (base.lastIndexOf(".") !== -1)
     base = base.substring(0, base.lastIndexOf("."));
 
   return base;

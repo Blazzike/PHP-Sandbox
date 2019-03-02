@@ -63,7 +63,7 @@ input[type=range] + .thumb {
 // Shared
 @mixin range-track {
   height: $track-height;
-  background: #c2c0c2;
+  background: #C2C0C2;
   border: none;
 }
 
@@ -121,7 +121,7 @@ input[type=range]::-moz-range-thumb {
 
 // hide the outline behind the border
 input[type=range]:-moz-focusring {
-  outline: 1px solid #fff;
+  outline: 1px solid #FFFFFF;
   outline-offset: -1px;
 }
 
@@ -145,11 +145,11 @@ input[type=range]::-ms-track {
 }
 
 input[type=range]::-ms-fill-lower {
-  background: #777;
+  background: #777777;
 }
 
 input[type=range]::-ms-fill-upper {
-  background: #ddd;
+  background: #DDDDDD;
 }
 
 input[type=range]::-ms-thumb {
