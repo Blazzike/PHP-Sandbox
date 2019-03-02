@@ -32,7 +32,7 @@
 
     // Page testing for requirements:
     // npm
-    if (!`npm`) array_push($response['errors'], 'NodeJS\' NPM is required for installation.');
+    if (!shell_exec('npm')) array_push($response['errors'], 'NodeJS\' NPM is required for installation.');
 
     // php 7+
     if (PHP_MAJOR_VERSION < 5 && PHP_MINOR_VERSION < 4) array_push($response['warnings'], 'PHP 5.4 and above recommended and may be required.');
@@ -123,10 +123,10 @@
     
     // Run npm run build
     echo 'Downloading from NPM (this may take a while)...' . PHP_EOL;
-    `npm install`;
+    shell_exec('npm install');
     
     echo 'Compiling interface (this will take a while)...' . PHP_EOL;
-    `npm run build`;
+    shell_exec('npm run build');
 
     // "Set options".
     chdir('../');

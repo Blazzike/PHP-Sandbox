@@ -6,7 +6,7 @@
   require('../vendor/autoload.php');
 
   if (!file_exists($path))
-    return exit('File doesn\'t exist.');
+    exit('File doesn\'t exist.');
 
   // setcookie('_sandbox_path', $relative_path);
 
