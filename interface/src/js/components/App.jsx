@@ -126,7 +126,7 @@ class App extends Component {
 
       let path = [...this.state.openFile.path, this.state.openFile.name];
       if (newWindow) {
-        window.open("php/operations/run/" + encodeURIComponent(path.join("\\")), "execution-window", "menubar=0");
+        window.open("php/operations/run/" + path.join("/"), "execution-window", "menubar=0");
 
         return;
       }

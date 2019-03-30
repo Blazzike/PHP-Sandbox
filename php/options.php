@@ -98,7 +98,10 @@
     'GET',
     'POST',
     'COOKIE',
-    'FILES'
+    'FILES',
+    'SERVER',
+    'REQUEST',
+    'ENV'
   ];
   
   // Constants.

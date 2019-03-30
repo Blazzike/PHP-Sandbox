@@ -1,14 +1,10 @@
 <?php
-  // $relative_path = $_COOKIE['_sandbox_path'];
-
   $_GET['path'] = str_replace('\\', '/', $_GET['path']);
   require('operation.php');
   require('../vendor/autoload.php');
 
   if (!file_exists($path))
-    exit('File doesn\'t exist.');
-
-  // setcookie('_sandbox_path', $relative_path);
+    return exit('File doesn\'t exist.');
 
   ob_start(function($buffer, $phase) {
     global $root;
@@ -179,9 +175,16 @@
   ini_set('max_execution_time', 5);
   chdir(dirname($path));
 
-  unset($_COOKIE['PHPSESSID']);
-  unset($_COOKIE['_sandbox_path']);
   unset($_GET['path']);
+  unset($_SERVER['PATH']);
+  
+  $_SERVER['SERVER_ADDR'] = '0.0.0.0';
+  $_SERVER['REMOTE_ADDR'] = '0.0.0.0';
+  $_SERVER['SERVER_ADMIN'] = 'N/A';
+  $_SERVER['SCRIPT_NAME'] = $path;
+  $_SERVER['SCRIPT_FILENAME'] = $path;
+  $_SERVER['PHP_SELF'] = $path;
+
   try {
     $sandbox->execute('<??>' . file_get_contents($path), false, $path);
   } catch (Exception $x) {
