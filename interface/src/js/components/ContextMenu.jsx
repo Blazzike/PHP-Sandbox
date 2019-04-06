@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from 'react-dom';
 
 class ContextMenu extends Component {
   constructor(props) {
@@ -10,11 +10,16 @@ class ContextMenu extends Component {
     this.contextMenuHandler = (e, contextContainer) => {
       ReactDOM.render(this.props.children, contextContainer);
       Object.assign(contextContainer.style, {
-        display: "block",
-        position: "fixed",
-        left: e.clientX + "px",
-        top: e.clientY + "px",
+        display: 'block',
+        position: 'fixed',
+        left: e.clientX + 'px',
+        top: e.clientY + 'px',
         opacity: 1
+      });
+
+      setImmediate(() => {
+        const height = contextContainer.getBoundingClientRect().height;
+        contextContainer.style.top = (e.clientY + height > window.innerHeight ? window.innerHeight - height : e.clientY) + 'px';
       });
 
       e.preventDefault();
@@ -22,23 +27,23 @@ class ContextMenu extends Component {
   }
 
   componentWillUnmount() {
-    this.el.current.parentElement.removeEventListener("contextmenu", this.contextMenuHandler);
+    this.el.current.parentElement.removeEventListener('contextmenu', this.contextMenuHandler);
   }
 
   componentDidMount() {
-    let contextContainer = document.querySelector("#context-container");
+    let contextContainer = document.querySelector('#context-container');
     if (!contextContainer) {
-      let el = document.createElement("ul");
-      el.id = "context-container";
-      el.className = "el-content dropdown-content";
+      let el = document.createElement('ul');
+      el.id = 'context-container';
+      el.className = 'el-content dropdown-content';
       document.body.appendChild(el);
 
       contextContainer = el;
 
-      document.addEventListener("click", e => contextContainer.style.display = "none");
+      document.addEventListener('click', e => contextContainer.style.display = 'none');
     }
 
-    this.el.current.parentElement.addEventListener("contextmenu", e => this.contextMenuHandler(e, contextContainer));
+    this.el.current.parentElement.addEventListener('contextmenu', e => this.contextMenuHandler(e, contextContainer));
   }
 
   render() {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as monaco from "monaco-editor";
+import * as monaco from 'monaco-editor';
 
 class Editor extends Component {
   constructor(props) {
@@ -8,26 +8,27 @@ class Editor extends Component {
     this.editor = React.createRef();
   }
 
-  componentDidUpdate(nextProps, nextState) {
+  componentDidUpdate() {
+    const language = this.props.language === 'js' ? 'javascript' : this.props.language;
     if (this.monaco && !this.props.open) {
       this.monaco.dispose();
 
       this.monaco = null;
-      window.removeEventListener("keydown", this.keyDownHandler);
+      window.removeEventListener('keydown', this.keyDownHandler);
 
       return;
     }
 
     if (!this.monaco && this.props.open) {
       this.monaco = monaco.editor.create(this.editor.current, {
-        language: this.props.language || "php",
+        language: language || 'php',
         automaticLayout: true,
         scrollBeyondLastLine: false,
         autoIndent: true,
         dragAndDrop: true,
         tabSize: 2,
-        theme: this.props.theme || "vs-dark",
-        wrappingIndent: "indent",
+        theme: this.props.theme || 'vs-dark',
+        wrappingIndent: 'indent',
         value: this.props.value,
         showUnused: true,
         formatOnPaste: true,
@@ -50,7 +51,8 @@ class Editor extends Component {
     if (!this.monaco)
       return;
 
-    monaco.editor.setTheme(this.props.theme || "vs-dark");
+    monaco.editor.setTheme(this.props.theme || 'vs-dark');
+    monaco.editor.setModelLanguage(monaco.editor.getModels()[0], language || 'php');
 
     if (this.props.value !== this.monaco.getModel().getValue())
       this.monaco.setValue(this.props.value);

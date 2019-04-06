@@ -1,8 +1,8 @@
-import * as Prompt from "./components/Prompt";
-import React from "react";
-import {app} from "./site";
-import {TreeEntry} from "./components/FileTree";
-import {net} from "./Util";
+import * as Prompt from './components/Prompt';
+import React from 'react';
+import {app} from './site';
+import {TreeEntry} from './components/FileTree';
+import {net} from './Util';
 
 export function getFileFromTree(tree, path) {
   for (let file of tree) {
@@ -70,18 +70,18 @@ export function deleteFilePrompt(file) {
       app.setLoading(false);
 
       if (!(s.success && s.json))
-        return alert(`Failure while deleting: ${s.error || "Something went wrong."}`);
+        return alert(`Failure while deleting: ${s.error || 'Something went wrong.'}`);
 
       close();
 
       if (app.state.openFile) {
         let openFullPath = [...app.state.openFile.path, app.state.openFile.name];
         if (file.type === TreeEntry.types.DIRECTORY) {
-          if (openFullPath.join("/").startsWith(file.path.join("/"))) {
+          if (openFullPath.join('/').startsWith(file.path.join('/'))) {
             app.setSaved();
             app.close();
           }
-        } else if (openFullPath.join("/") === fileFullPath.join("/")) {
+        } else if (openFullPath.join('/') === fileFullPath.join('/')) {
           app.setSaved();
           app.close();
         }
@@ -90,9 +90,9 @@ export function deleteFilePrompt(file) {
       if (removeFileFromTree(app.getTree(), fileFullPath))
         app.setTree(app.getTree());
       else
-        alert("Failed to update tree.");
+        alert('Failed to update tree.');
     }, {
-      path: fileFullPath.join("/")
+      path: fileFullPath.join('/')
     });
   });
 }
@@ -100,9 +100,9 @@ export function deleteFilePrompt(file) {
 export function newFile(type, name, path, callback) {
   let file = new TreeEntry(name, type, path);
   if (getFileFromTree(app.getTree(), [...path, name]))
-    return alert("File or directory already exists with that name.");
+    return alert('File or directory already exists with that name.');
 
-  writeFile(file, "", s => {
+  writeFile(file, '', s => {
     if (callback)
       callback(s);
 
@@ -112,13 +112,13 @@ export function newFile(type, name, path, callback) {
     if (addFileToTree(file, app.getTree(), path))
       app.setTree(app.getTree());
     else
-      alert("Failed to update tree.");
+      alert('Failed to update tree.');
   });
 }
 
 export function writeFile(file, content, callback) {
   app.setLoading();
-  net.postFormData(`php/operations/${file.type === TreeEntry.types.FILE ? "write" : "mkdir"}.php`, {
+  net.postFormData(`php/operations/${file.type === TreeEntry.types.FILE ? 'write' : 'mkdir'}.php`, {
     value: content
   }, (xhr, s) => {
     app.setLoading(false);
@@ -126,9 +126,9 @@ export function writeFile(file, content, callback) {
     callback(s);
 
     if (!(s.success && s.json))
-      return alert(`Failure while writing: ${s.error || "Something went wrong."}`);
+      return alert(`Failure while writing: ${s.error || 'Something went wrong.'}`);
   }, {
-    path: [...file.path, file.name].join("/")
+    path: [...file.path, file.name].join('/')
   });
 }
 
@@ -154,19 +154,11 @@ export function uploadFilePrompt(path) {
 }
 
 export function uniqueName(path, id = 1) {
-  let name = `${path[path.length - 1]}${id === 1 ? "" : ` [${id}]`}`;
+  let name = `${path[path.length - 1]}${id === 1 ? '' : ` [${id}]`}`;
   if (getFileFromTree(app.getTree(), [...path.slice(0, path.length - 1), name]))
     return uniqueName(path, id + 1);
 
   return name;
-}
-
-export function basename(str) {
-  let base = String(str).substring(str.lastIndexOf('/') + 1);
-  if (base.lastIndexOf(".") !== -1)
-    base = base.substring(0, base.lastIndexOf("."));
-
-  return base;
 }
 
 export function copyFile(file, newPath, callback, newName = file.name) {
@@ -182,72 +174,81 @@ export function copyFile(file, newPath, callback, newName = file.name) {
       callback(s);
 
     if (!(s.success && s.json))
-      return alert(`Failure while copying: ${s.error || "Something went wrong."}`);
+      return alert(`Failure while copying: ${s.error || 'Something went wrong.'}`);
 
     file = new TreeEntry(newName, file.type, newPath, file.contents);
 
     if (!addFileToTree(file, app.getTree(), newPath))
-      alert("Failed to update tree.");
+      alert('Failed to update tree.');
 
     updatePaths(app.getTree());
     app.setTree(app.getTree());
   }, {
-    path: [...file.path, file.name].join("/"),
-    newPath: [...newPath, newName].join("/")
+    path: [...file.path, file.name].join('/'),
+    newPath: [...newPath, newName].join('/')
   });
 }
 
 export function moveFile(file, newPath, callback, newName = file.name) {
   let fileFullPath = [...file.path, file.name];
   let newFileFullPath = [...newPath, newName];
-  if (fileFullPath.join("/") === newFileFullPath.join("/"))
-    return alert("Cannot move to the same place.");
+  if (fileFullPath.join('/') === newFileFullPath.join('/'))
+    return alert('Cannot move to the same place.');
 
   newName = uniqueName(newFileFullPath);
-  // if (getFileFromTree(app.getTree(), [...newPath, newName]))
-  //   return alert("File or directory already exists with that name.");
+  newFileFullPath = [...newPath, newName];
 
-  app.setLoading();
-  net.get(`php/operations/rename.php`, (xhr, s) => {
-    app.setLoading(false);
+  const exec = () => {
+    app.setLoading();
+    net.get(`php/operations/rename.php`, (xhr, s) => {
+      app.setLoading(false);
 
-    if (callback)
-      callback(s);
+      if (callback)
+        callback(s);
 
-    if (!(s.success && s.json))
-      return alert(`Failure while moving/renaming: ${s.error || "Something went wrong."}`);
+      if (!(s.success && s.json))
+        return alert(`Failure while moving/renaming: ${s.error || 'Something went wrong.'}`);
 
-    if (app.state.openFile) {
-      let openFullPath = [...app.state.openFile.path, app.state.openFile.name];
-      if (file.type === TreeEntry.types.DIRECTORY) {
-        if (openFullPath.join("/").startsWith(file.path.join("/"))) {
-          app.save(success => {
-            if (success)
-              app.close();
-          });
-        }
-      } else if (openFullPath.join("/") === fileFullPath.join("/")) {
+      if (!removeFileFromTree(app.getTree(), [...file.path, file.name]))
+        return alert('Failed to update tree.');
+
+      file = new TreeEntry(newName, file.type, newPath, file.contents);
+
+      if (!addFileToTree(file, app.getTree(), newPath))
+        alert('Failed to update tree.');
+
+      updatePaths(app.getTree());
+      app.setTree(app.getTree());
+    }, {
+      path: fileFullPath.join('/'),
+      newPath: newFileFullPath.join('/')
+    });
+  };
+
+  if (app.state.openFile) {
+    let openFullPath = [...app.state.openFile.path, app.state.openFile.name];
+    if (file.type === TreeEntry.types.DIRECTORY) {
+      if (openFullPath.join('/').startsWith(file.path.join('/'))) {
         app.save(success => {
-          if (success)
+          if (success) {
             app.close();
+
+            exec();
+          }
         });
       }
-    }
+    } else if (openFullPath.join('/') === fileFullPath.join('/')) {
+      app.save(success => {
+        if (success) {
+          app.close();
 
-    if (!removeFileFromTree(app.getTree(), [...file.path, file.name]))
-      return alert("Failed to update tree.");
-
-    file = new TreeEntry(newName, file.type, newPath, file.contents);
-
-    if (!addFileToTree(file, app.getTree(), newPath))
-      alert("Failed to update tree.");
-
-    updatePaths(app.getTree());
-    app.setTree(app.getTree());
-  }, {
-    path: fileFullPath.join("/"),
-    newPath: newFileFullPath.join("/")
-  });
+          exec();
+        }
+      });
+    } else
+      exec();
+  } else
+    exec();
 }
 
 export function renameFilePrompt(file) {
@@ -261,7 +262,7 @@ export function renameFilePrompt(file) {
 
       close();
     }, value);
-  }, "New Name", null, file.name, "Name");
+  }, 'New Name', null, file.name, 'Name');
 }
 
 export function updatePaths(tree, path = []) {
@@ -273,5 +274,5 @@ export function updatePaths(tree, path = []) {
 }
 
 export function downloadFile(path) {
-  window.location = `php/operations/download.php?path=${path.join("/")}`;
+  window.location = `php/operations/download.php?path=${path.join('/')}`;
 }

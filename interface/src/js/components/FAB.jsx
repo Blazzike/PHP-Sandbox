@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Tooltip from "./Tooltip";
-import * as M from "materialize-css";
-import {app} from "../site";
+import Tooltip from './Tooltip';
+import * as M from 'materialize-css';
+import {app} from '../site';
 
 class FAB extends Component {
   constructor(props) {

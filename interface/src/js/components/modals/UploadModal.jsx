@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Modal from "../Modal";
-import {arrayToTreeEntry, net} from "../../Util";
-import {app} from "../../site";
+import Modal from '../Modal';
+import {arrayToTreeEntry, net} from '../../Util';
+import {app} from '../../site';
 
 class UploadModal extends Modal {
   constructor(props) {
@@ -23,12 +23,12 @@ class UploadModal extends Modal {
           e.preventDefault();
 
           app.setLoading();
-          net.post("php/operations/upload.php?path=" + [this.props.destination,
-            this.fileInput.current.files[0].name].join("/"), new FormData(e.target), (xhr, s) => {
+          net.post('php/operations/upload.php?path=' + [this.props.destination,
+            this.fileInput.current.files[0].name].join('/'), new FormData(e.target), (xhr, s) => {
             app.setLoading(false);
 
             if (!(s.success && s.json))
-              return alert(`Failure while uploading: ${s.error || "Something went wrong."}`);
+              return alert(`Failure while uploading: ${s.error || 'Something went wrong.'}`);
 
             app.setTree(arrayToTreeEntry(s.json.tree));
 
@@ -39,7 +39,7 @@ class UploadModal extends Modal {
           });
         }}>
           <div className="modal-content">
-            <h4>{this.props.title || "Upload"}</h4>
+            <h4>{this.props.title || 'Upload'}</h4>
             <p>{this.props.msg}</p>
             <div className="row">
               <div className="file-field input-field s12">
@@ -57,8 +57,8 @@ class UploadModal extends Modal {
             <button type="button" className="modal-close waves-effect btn-flat" tabIndex="2" onClick={e => {
               if (this.props.callback)
                 this.props.callback(false, e);
-            }}>{this.props.cancelButton || "Cancel"}</button>
-            <button className="waves-effect btn-flat" tabIndex="3">{this.props.uploadButton || "Upload"}</button>
+            }}>{this.props.cancelButton || 'Cancel'}</button>
+            <button className="waves-effect btn-flat" tabIndex="3">{this.props.uploadButton || 'Upload'}</button>
           </div>
         </form>
       </div>

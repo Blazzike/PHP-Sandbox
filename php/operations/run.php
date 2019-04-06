@@ -167,6 +167,7 @@
   $sandbox->setOption('allow_namespaces', true);
   $sandbox->setOption('allow_constants', true);
   $sandbox->setOption('allow_globals', true);
+  $sandbox->setOption('allow_closures', true);
   $sandbox->allow_includes = true;
   $sandbox->setOption('overwrite_superglobals', false);
 

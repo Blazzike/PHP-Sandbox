@@ -1,29 +1,29 @@
 import React, {Component} from 'react';
-import FileTree from "./FileTree"
-import Nav from "./Nav"
-import Editor from "./Editor";
-import * as FileUtil from "../FileUtil";
+import FileTree from './FileTree'
+import Nav from './Nav'
+import Editor from './Editor';
+import * as FileUtil from '../FileUtil';
 
-import {arrayToTreeEntry, net} from "../Util";
-import AccessModal from "./modals/AccessModal";
-import * as ReactDOM from "react-dom";
-import ExecutionModal from "./modals/ExecutionModal";
-import {app} from "../site";
-import FAB from "./FAB";
+import {arrayToTreeEntry, net} from '../Util';
+import AccessModal from './modals/AccessModal';
+import * as ReactDOM from 'react-dom';
+import ExecutionModal from './modals/ExecutionModal';
+import {app} from '../site';
+import FAB from './FAB';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: "",
+      value: '',
       openFile: null,
       loading: this.props.loading,
       tree: this.props.tree || [],
-      name: "",
+      name: '',
       saved: true,
       clipboard: null,
-      theme: "dark"
+      theme: 'dark'
     };
 
     this.accessModal = React.createRef();
@@ -33,16 +33,16 @@ class App extends Component {
   componentDidMount() {
     setTimeout(() => this.accessModal.current.open());
 
-    window.addEventListener("beforeunload", e => {
+    window.addEventListener('beforeunload', e => {
       if (this.state.saved)
         return;
 
       e.preventDefault();
-      e.returnValue = "Save your changes!";
-      return "Save your changes!";
+      e.returnValue = 'Save your changes!';
+      return 'Save your changes!';
     });
 
-    window.addEventListener("keydown", e => {
+    window.addEventListener('keydown', e => {
       if (e.ctrlKey) {
         if (e.shiftKey) {
           if (e.which === 82) {
@@ -65,7 +65,7 @@ class App extends Component {
 
           e.preventDefault();
         } else if (e.which === 68) {
-          app.setTheme(this.state.theme === "dark" ? "light" : "dark");
+          app.setTheme(this.state.theme === 'dark' ? 'light' : 'dark');
 
           e.preventDefault();
         }
@@ -126,16 +126,16 @@ class App extends Component {
 
       let path = [...this.state.openFile.path, this.state.openFile.name];
       if (newWindow) {
-        window.open("php/operations/run/" + path.join("/"), "execution-window", "menubar=0");
+        window.open('php/sandbox/' + path.join('/'), 'execution-window', 'menubar=0');
 
         return;
       }
 
       ReactDOM.render(<ExecutionModal path={path} open={true} onCloseEnd={() => {
-        ReactDOM.unmountComponentAtNode(document.getElementById("execution-modal-wrapper"));
+        ReactDOM.unmountComponentAtNode(document.getElementById('execution-modal-wrapper'));
 
         this.editorFocus();
-      }}/>, document.getElementById("execution-modal-wrapper"));
+      }}/>, document.getElementById('execution-modal-wrapper'));
     });
   }
 
@@ -172,7 +172,7 @@ class App extends Component {
         saved: true
       });
 
-      alert("File saved.");
+      alert('File saved.');
 
       if (callback)
         callback(true);
@@ -185,7 +185,7 @@ class App extends Component {
         if (callback)
           callback(false, s);
 
-        return alert(`Failure while fetching the directory tree: ${s.error || "Something went wrong."}`);
+        return alert(`Failure while fetching the directory tree: ${s.error || 'Something went wrong.'}`);
       }
 
       this.setState({
@@ -212,11 +212,11 @@ class App extends Component {
     let s = this.state;
     return (
       <div>
-        {s.theme === "light" ? (
+        {s.theme === 'light' ? (
           <div>
-            <link rel="stylesheet" href="css/bundle-light.css?v6"/>
+            <link rel="stylesheet" href="css/bundle-light.css?v7"/>
           </div>
-        ) : ""}
+        ) : ''}
 
         {s.loading ? (
           <div id="loadingContainer">
@@ -238,7 +238,7 @@ class App extends Component {
               </div>
             </div>
           </div>
-        ) : ""}
+        ) : ''}
 
         <Nav saved={s.saved}/>
         <FileTree tree={s.tree} name={s.name} onFileOpen={file => {
@@ -247,24 +247,24 @@ class App extends Component {
               return;
 
             this.setLoading();
-            net.get("php/operations/read.php", (xhr, s) => {
+            net.get('php/operations/read.php', (xhr, s) => {
               this.setLoading(false);
 
               if (!(s.success && s.json))
-                return alert(`Failure while reading: ${s.error || "Something went wrong."}`);
+                return alert(`Failure while reading: ${s.error || 'Something went wrong.'}`);
 
               this.setState({
                 value: s.json.content,
                 openFile: file
               });
             }, {
-              path: [...file.path, file.name].join("/")
+              path: [...file.path, file.name].join('/')
             });
           });
         }}/>
 
         <main>
-          <Editor theme={s.theme === "light" ? "vs-light" : "vs-dark"} ref={this.editorRef} open={s.openFile} value={s.value} onDidChangeContent={(e, model) => {
+          <Editor theme={s.theme === 'light' ? 'vs-light' : 'vs-dark'} language={s.openFile ? s.openFile.name.split('.').pop() : 'php'} ref={this.editorRef} open={s.openFile} value={s.value} onDidChangeContent={(e, model) => {
             let value = model.getValue();
             if (this.state.value === value)
               return;
@@ -293,7 +293,7 @@ class App extends Component {
           this.accessModal.current.close();
         }}/>
 
-        {s.openFile ? (<FAB/>) : ""}
+        {s.openFile ? (<FAB/>) : ''}
 
         <div id="prompt-container"/>
       </div>

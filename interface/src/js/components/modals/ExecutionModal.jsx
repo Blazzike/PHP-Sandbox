@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Modal from "../Modal";
-import {app, setLoading} from "../../site";
-import {net} from "../../Util";
-import * as M from "materialize-css";
-import Tooltip from "../Tooltip";
+import Modal from '../Modal';
+import {app, setLoading} from '../../site';
+import {net} from '../../Util';
+import * as M from 'materialize-css';
+import Tooltip from '../Tooltip';
 
 class ExecutionModal extends Modal {
   constructor(props) {
@@ -38,9 +38,9 @@ class ExecutionModal extends Modal {
             <div id="_ExecutionModal_text" className="col s12">
               {this.state.text ? (
                 <pre style={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  overflowWrap: "break-word"
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  overflowWrap: 'break-word'
                 }} className="selectable">{this.state.text}</pre>
               ) : (
                 <a className="btn-large btn-fill waves-effect white black-text" onClick={e => {
@@ -49,7 +49,7 @@ class ExecutionModal extends Modal {
                     app.setLoading(false);
 
                     if (!s.success)
-                      return alert(`Failure while running: ${s.error || "Something went wrong."}`);
+                      return alert(`Failure while running: ${s.error || 'Something went wrong.'}`);
 
                     this.setState({
                       text: s.text
@@ -57,13 +57,13 @@ class ExecutionModal extends Modal {
 
                     app.reloadTree();
                   }, {
-                    path: this.props.path.join("/")
+                    path: this.props.path.join('/')
                   });
                 }}>Execute as Text</a>
               )}
             </div>
             <div id="_ExecutionModal_html" className="col s12">
-              <iframe onLoad={e => app.reloadTree()} src={`php/operations/run/${this.props.path.join("/")}`} frameBorder="no" width="100%" height="130px"/>
+              <iframe onLoad={e => app.reloadTree()} src={`php/operations/run/${this.props.path.join('/')}`} frameBorder="no" width="100%" height="130px"/>
             </div>
           </div>
         </div>

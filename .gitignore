@@ -1,6 +1,7 @@
 # Sandbox directories
 /download/
-/sandboxes/
+/sandboxes/**/*
+!/sandboxes/.htaccess
 
 # Compiled Interface
 /*.js

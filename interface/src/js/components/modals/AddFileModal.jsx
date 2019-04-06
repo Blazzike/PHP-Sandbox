@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Modal from "../Modal";
-import {TreeEntry} from "../FileTree";
-import * as M from "materialize-css";
+import Modal from '../Modal';
+import {TreeEntry} from '../FileTree';
+import * as M from 'materialize-css';
 
 class AddFileModal extends Modal {
   constructor(props) {
@@ -53,8 +53,8 @@ class AddFileModal extends Modal {
             <button type="button" tabIndex="3" className="modal-close waves-effect btn-flat" onClick={e => {
               if (this.props.callback)
                 this.props.callback(false, e);
-            }}>{this.props.cancelButton || "Cancel"}</button>
-            <button tabIndex="4" className="waves-effect btn-flat">{this.props.createButton || "Create"}</button>
+            }}>{this.props.cancelButton || 'Cancel'}</button>
+            <button tabIndex="4" className="waves-effect btn-flat">{this.props.createButton || 'Create'}</button>
           </div>
         </form>
       </div>

@@ -1,4 +1,4 @@
-import {TreeEntry} from "./components/FileTree";
+import {TreeEntry} from './components/FileTree';
 
 export function getParameterForURL(url, param, value) {
   return `${(url.split('?')[1] ? '&' : '?')}${param}=${value}`;
@@ -9,7 +9,7 @@ export const net = {
     let xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function() {
+    xhr.addEventListener('readystatechange', function() {
       if (this.readyState === 4) {
         let json = null;
         let error = null;
@@ -42,14 +42,14 @@ export const net = {
       url += getParameterForURL(url, parameter, parameters[parameter]);
     });
 
-    this.request("POST", url, callback, headers, data);
+    this.request('POST', url, callback, headers, data);
   },
   get(url, callback, parameters = {}, headers = {}) {
     Object.keys(parameters).forEach(parameter => {
       url += getParameterForURL(url, parameter, parameters[parameter]);
     });
 
-    this.request("GET", url, callback, headers);
+    this.request('GET', url, callback, headers);
   },
   postFormData(url, formData, callback, parameters = {}, headers = {}) {
     let data = new FormData();
@@ -65,16 +65,16 @@ export function arrayToTreeEntry(array, path = []) {
   let result = [];
   array.forEach(item => {
     result.push(new TreeEntry(item.name,
-      item.type === "file" ? TreeEntry.types.FILE : TreeEntry.types.DIRECTORY,
+      item.type === 'file' ? TreeEntry.types.FILE : TreeEntry.types.DIRECTORY,
       path,
-      item.type === "directory" ? arrayToTreeEntry(item.contents, [...path, item.name]) : null));
+      item.type === 'directory' ? arrayToTreeEntry(item.contents, [...path, item.name]) : null));
   });
 
   return result;
 }
 
 export function esc(str) {
-  let el = document.createElement("div");
+  let el = document.createElement('div');
   el.innerText = str;
 
   return el.innerHTML;

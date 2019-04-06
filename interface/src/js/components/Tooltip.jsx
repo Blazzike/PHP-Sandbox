@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as M from "materialize-css";
+import * as M from 'materialize-css';
 
 class Tooltip extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Tooltip extends Component {
   render() {
     return (
       <div style={{
-        display: "inherit"
+        display: 'inherit'
       }} ref={this.tooltipEl} data-tooltip={this.props.text} data-position={this.props.position}>
         {this.props.children}
       </div>

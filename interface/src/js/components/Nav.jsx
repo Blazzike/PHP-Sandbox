@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {app} from "../site";
-import Tooltip from "./Tooltip";
+import {app} from '../site';
+import Tooltip from './Tooltip';
 
 class Nav extends Component {
   render() {
@@ -15,7 +15,7 @@ class Nav extends Component {
               <li>
                 <Tooltip text="Toggle Dark Theme (Ctrl + D)">
                   <a className="clickable btn btn-flat waves-effect" onClick={() => {
-                    app.setTheme(app.state.theme === "dark" ? "light" : "dark");
+                    app.setTheme(app.state.theme === 'dark' ? 'light' : 'dark');
                   }}><i className="material-icons">brightness_4</i></a>
                 </Tooltip>
               </li>

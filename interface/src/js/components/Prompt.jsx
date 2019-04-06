@@ -1,12 +1,12 @@
-import React from "react";
-import ConfirmModal from "./modals/ConfirmModal";
-import * as ReactDOM from "react-dom";
-import AddFileModal from "./modals/AddFileModal";
-import InputModal from "./modals/InputModal";
-import UploadModal from "./modals/UploadModal";
+import React from 'react';
+import ConfirmModal from './modals/ConfirmModal';
+import * as ReactDOM from 'react-dom';
+import AddFileModal from './modals/AddFileModal';
+import InputModal from './modals/InputModal';
+import UploadModal from './modals/UploadModal';
 
 export function confirm(msg, callback, confirmButton, cancelButton, title) {
-  let container = document.querySelector("#prompt-container");
+  let container = document.querySelector('#prompt-container');
   ReactDOM.render(<ConfirmModal open={true}
                                 msg={msg}
                                 confirmButton={confirmButton}
@@ -18,7 +18,7 @@ export function confirm(msg, callback, confirmButton, cancelButton, title) {
 }
 
 export function addFile(callback, createButton, cancelButton) {
-  let container = document.querySelector("#prompt-container");
+  let container = document.querySelector('#prompt-container');
   ReactDOM.render(<AddFileModal open={true}
                                 createButton={createButton}
                                 cancelButton={cancelButton}
@@ -28,7 +28,7 @@ export function addFile(callback, createButton, cancelButton) {
 }
 
 export function input(callback, title, msg, defaultValue, input, confirmButton, cancelButton) {
-  let container = document.querySelector("#prompt-container");
+  let container = document.querySelector('#prompt-container');
   ReactDOM.render(<InputModal open={true}
                               confirmButton={confirmButton}
                               cancelButton={cancelButton}
@@ -42,7 +42,7 @@ export function input(callback, title, msg, defaultValue, input, confirmButton, 
 }
 
 export function uploadFile(destination, callback, uploadButton, cancelButton, title, msg) {
-  let container = document.querySelector("#prompt-container");
+  let container = document.querySelector('#prompt-container');
   ReactDOM.render(<UploadModal open={true}
                                destination={destination}
                                uploadButton={uploadButton}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Modal from "../Modal";
+import Modal from '../Modal';
 
 class ConfirmModal extends Modal {
   constructor(props) {
@@ -17,7 +17,7 @@ class ConfirmModal extends Modal {
     return (
       <div ref={this.modalEl} className="modal">
         <div className="modal-content">
-          <h4>{this.props.title || "Confirm"}</h4>
+          <h4>{this.props.title || 'Confirm'}</h4>
           <p>{this.props.msg}</p>
         </div>
         <div className="modal-footer">
@@ -26,12 +26,12 @@ class ConfirmModal extends Modal {
               this.props.callback(true, () => {
                 this.close();
               }, e);
-          }}>{this.props.confirmButton || "Yes"}</button>
-          {this.props.cancelButton !== null && typeof this.props.cancelButton !== "undefined" && this.props.cancelButton.length === 0 ? "" : (
+          }}>{this.props.confirmButton || 'Yes'}</button>
+          {this.props.cancelButton !== null && typeof this.props.cancelButton !== 'undefined' && this.props.cancelButton.length === 0 ? '' : (
             <button type="button" className="modal-close waves-effect btn-flat" tabIndex="2" onClick={e => {
               if (this.props.callback)
                 this.props.callback(false, e);
-            }}>{this.props.cancelButton || "Cancel"}</button>
+            }}>{this.props.cancelButton || 'Cancel'}</button>
           )}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as M from "materialize-css";
+import * as M from 'materialize-css';
 
 class Modal extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Modal extends Component {
   open() {
     this.modalInst.open();
 
-    let focus = this.modalEl.current.querySelector("button,input");
+    let focus = this.modalEl.current.querySelector('button,input');
     if (focus)
       focus.focus();
   }

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Modal from "../Modal";
-import {net} from "../../Util";
-import {app} from "../../site";
-import * as Prompt from "../Prompt";
-import Tooltip from "../Tooltip";
+import Modal from '../Modal';
+import {net} from '../../Util';
+import {app} from '../../site';
+import * as Prompt from '../Prompt';
+import Tooltip from '../Tooltip';
 
 class AccessModal extends Modal {
   constructor(props) {
@@ -15,21 +15,21 @@ class AccessModal extends Modal {
     this.handleSubmit = e => {
       e.preventDefault();
 
-      let button = e.target.querySelector("button:focus");
-      let open = button ? button.innerText.toUpperCase().startsWith("OPEN") : true;
+      let button = e.target.querySelector('button:focus');
+      let open = button ? button.innerText.toUpperCase().startsWith('OPEN') : true;
 
       app.setLoading();
-      net.postFormData(`php/${open ? "open" : "new"}.php`, {
+      net.postFormData(`php/${open ? 'open' : 'new'}.php`, {
         name: e.target.elements.username.value,
         password: e.target.elements.password.value
       }, (xhr, s) => {
         app.setLoading(false);
 
         if (!(s.success && s.json))
-          return alert(`Failure while ${open ? "opening" : "creating"}: ${s.error || "Something went wrong."}`);
+          return alert(`Failure while ${open ? 'opening' : 'creating'}: ${s.error || 'Something went wrong.'}`);
 
         if (!open)
-          Prompt.confirm("PHP Sandbox works much like your standard OS File Manager, right click files or the editor to bring up a context menu. To execute your code, simply click the green play button in the bottom right.", (confirmed, close) => close(), "OK", "", "Welcome!");
+          Prompt.confirm('PHP Sandbox works much like your standard OS File Manager, right click files or the editor to bring up a context menu. To execute your code, simply click the green play button in the bottom right.', (confirmed, close) => close(), 'OK', '', 'Welcome!');
 
         this.props.onOpen(s.json.name, s.json.tree);
       });
