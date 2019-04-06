@@ -63,7 +63,7 @@ class ExecutionModal extends Modal {
               )}
             </div>
             <div id="_ExecutionModal_html" className="col s12">
-              <iframe onLoad={e => app.reloadTree()} src={`php/operations/run/${this.props.path.join('/')}`} frameBorder="no" width="100%" height="130px"/>
+              <iframe onLoad={e => app.reloadTree()} src={`php/sandbox/${this.props.path.join('/')}`} frameBorder="no" width="100%" height="130px"/>
             </div>
           </div>
         </div>
