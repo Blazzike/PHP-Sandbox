@@ -73,7 +73,7 @@ class FileTree extends Component {
                 if (file === null)
                   return alert('Something went wrong.');
                 FileUtil.moveFile(file, directory.path ? [...directory.path, directoryName] : []);
-              }}>{directoryName}<i className={'material-icons ' + this.extensionColors['_directory']}>folder</i>
+              }}><i className={'material-icons ' + this.extensionColors['_directory']}>folder</i>{directoryName}
                 {typeof directory !== 'string' ? (
                   <ContextMenu>
                     <li><a className="waves-effect" onClick={e => FileUtil.newFilePrompt([...directory.path,
@@ -127,7 +127,7 @@ class FileTree extends Component {
                     }}><a className="clickable" onClick={e => {
                       if (this.props.onFileOpen)
                         this.props.onFileOpen(file);
-                    }}><i className={'material-icons ' + this.extensionColors[file.name.split('.').pop()] || this.extensionColors._unknown}>insert_drive_file</i>{file.name}
+                    }}>{file.name}<i className={'material-icons ' + this.extensionColors[file.name.split('.').pop()] || this.extensionColors._unknown}>insert_drive_file</i>
                       <ContextMenu>
                         <li>
                           <a className="waves-effect" onClick={e => FileUtil.renameFilePrompt(file)}><i className="material-icons">short_text</i>Rename</a>

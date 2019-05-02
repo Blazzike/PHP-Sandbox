@@ -31,6 +31,9 @@
   if (!file_name_valid($new_basename))
     return error('Invalid new file name.');
 
+  if (strpos(dirname($new_path), $path) === 0)
+    return error('Copying inside of self.');
+
   if (is_dir($path))
     recurse_copy($path, $new_path);
   else if (copy($path, $new_path) === false)
