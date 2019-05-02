@@ -127,7 +127,7 @@ class FileTree extends Component {
                     }}><a className="clickable" onClick={e => {
                       if (this.props.onFileOpen)
                         this.props.onFileOpen(file);
-                    }}>{file.name}<i className={'material-icons ' + this.extensionColors[file.name.split('.').pop()] || this.extensionColors._unknown}>insert_drive_file</i>
+                    }}><i className={'material-icons ' + this.extensionColors[file.name.split('.').pop()] || this.extensionColors._unknown}>insert_drive_file</i>{file.name}
                       <ContextMenu>
                         <li>
                           <a className="waves-effect" onClick={e => FileUtil.renameFilePrompt(file)}><i className="material-icons">short_text</i>Rename</a>
